@@ -18,5 +18,10 @@ functions:
     handler: first.hello
   second:
     handler: second.hello
-  hello: 
+  hello:
     handler: src/hello.handler
+  costNotifier:
+    handler: src/costNotifier.handler
+    events:
+      # 日本時間で毎朝8時(標準時間から9時間ずれている)
+      - schedule: cron(0 23 * * ? *)
