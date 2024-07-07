@@ -25,3 +25,5 @@ functions:
     events:
       # 日本時間で毎朝8時(標準時間から9時間ずれている)
       - schedule: cron(0 23 * * ? *)
+    environment:
+      SLACK_WEBHOOK_URL: ${ssm:UDEMY_AWS_LAMBDA_SLACK_WEBHOOK_URL}
