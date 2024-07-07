@@ -1,5 +1,7 @@
+import { IncomingWebhook } from "@slack/webhook";
+
 export async function handler(event, context) {
-  return {
-    message: "Hello Serverless Framework!",
-  };
+  const slackWebhookUrl = process.env.SLACK_WEBHOOK_URL;
+  const slackWebhook = new IncomingWebhook(slackWebhookUrl);
+  await slackWebhook.send("Hello Slack Webhook!");
 }
