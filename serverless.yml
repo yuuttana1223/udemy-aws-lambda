@@ -8,6 +8,11 @@ frameworkVersion: "3"
 plugins:
   - serverless-webpack
   - serverless-iam-roles-per-function
+  - serverless-api-gateway-throttling
+custom:
+  apiGatewayThrottling:
+    maxRequestsPerSecond: 10 # 秒間10リクエスト
+    maxConcurrentRequests: 5 # サーバーが同時に処理できるリクエスト数
 
 provider:
   name: aws
@@ -21,6 +26,10 @@ functions:
     handler: second.hello
   hello:
     handler: src/hello.handler
+    events:
+      - httpApi:
+          method: get
+          path: /hello
   costNotifier:
     handler: src/costNotifier.handler
     events:
